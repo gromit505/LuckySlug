@@ -16,7 +16,7 @@ foodImg3.src = "img/food3.png";
 // Звуковые файлы
 let chill = new Audio();
 
-chill.src = "audio/chill-4.mp3";
+chill.src = "audio/chill-5.mp3";
 
 let eatSound = new Audio();
 eatSound.src = "audio/hum.mp3";
