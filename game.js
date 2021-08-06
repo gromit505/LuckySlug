@@ -13,6 +13,21 @@ foodImg2.src = "img/food2.png";
 const foodImg3 = new Image();
 foodImg3.src = "img/food3.png";
 
+// Звуковые файлы
+let chill = new Audio();
+
+chill.src = "audio/chill-4.mp3";
+
+let eatSound = new Audio();
+eatSound.src = "audio/hum.mp3";
+
+let boom = new Audio;
+boom.src = "audio/boom.mp3";
+
+/*function preload() {
+	eatSound = loadSound("audio/hum.mp3")
+}*/
+
 let box = 32;
 
 let score = 0;
@@ -45,12 +60,22 @@ function direction(event) {
 		dir = "down";
 }
 
+
+
+
 function eatTail(head, arr) {
 	for(let i = 0; i < arr.length; i++) {
 		if(head.x == arr[i].x && head.y == arr[i].y)
-			clearInterval(game);
+			// alert('GAME OVER', boom.play());
+			clearInterval(game, boom.play());
+
+
 	}
 }
+
+
+
+
 
 
 
@@ -66,19 +91,14 @@ function drawGame() {
 
 	for(let i = 0; i < snake.length; i++) {
 		if( i == 0) {
-			// ctx.drawImage(foodImg2, fooder2.x, fooder2.y);
 			ctx.drawImage(foodImg2, snake[i].x, snake[i].y);
 		}
 		else if ( i != 0) {
 			ctx.fillStyle = "green";
-			/*ctx.fillRect(snake[i].x, snake[i].y, box, box);*/
 			ctx.drawImage(foodImg3, snake[i].x, snake[i].y);
-			
 		}
-		
-	}
-
 	
+	}
 
 	ctx.fillStyle = "white";
 	ctx.font = "48px Arial";
@@ -89,6 +109,7 @@ function drawGame() {
 
 	if(snakeX == food.x && snakeY == food.y) {
 		score++;
+		eatSound.play();
 		food = {
 			x: Math.floor((Math.random() * 17 + 1)) * box,
 			y: Math.floor((Math.random() * 15 + 3)) * box,
@@ -123,7 +144,14 @@ function drawGame() {
 	}
 	else if ( newHead.y > box * 17) {
 		newHead.y = box * 3;
-	}			
+	};
+
+
+if (eatTail != true) {
+		chill.play();
+	}
+
+			
 
 
 
